@@ -1,0 +1,438 @@
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-family: "Istok Web";
+}
+
+header {
+  background-color: #1E66FF;
+  color: white;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+}
+
+#header-title {
+  text-align: center;
+}
+
+/* Map --------------------------------------------------------------------------------*/
+.leaflet-control-attribution {
+  display: none;
+}
+
+#map {
+  height: calc(100% - 50px);
+}
+
+#info {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  z-index: 9998;
+  background-color: #1E66FF;
+  opacity: 0;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: 0.8s;
+  color: white;
+}
+
+#adresgegevens {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+#adres-wrap {
+  margin-bottom: 15px;
+}
+
+#omschrijving {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 15px 0;
+}
+
+#straat, #gemeente {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+#huisnummer, #district {
+  margin-left: 5px;
+}
+
+#route-wrap {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid lightgrey;
+}
+
+#route {
+  color: white;
+  text-decoration: none;
+}
+
+#route-icon {
+  width: 12px;
+  height: 12px;
+  margin-left: 5px;
+  margin-bottom: 6px;
+  background-image: url("../img/info icons/Arrow-Right-Up-White.svg");
+}
+
+#infolijn {
+  height: 3px;
+  width: 80%;
+  margin: 20px auto;
+  background-color: white;
+  opacity: 0.8;
+}
+
+#praktische-gegevens {
+  font-weight: bold;
+}
+
+.praktische-gegevens {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.icon-title-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.praktische-gegevens-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.praktische-gegevens-data {
+  text-align: right;
+}
+
+#afstand-icon {
+  background-image: url("../img/info icons/Compass-Icon-White.svg");
+}
+
+#geslacht-icon {
+  background-image: url("../img/info icons/Gender-Icon-White.svg");
+}
+
+#geslacht-data {
+  height: 30px;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#luiertafel-icon {
+  background-image: url("../img/info icons/Baby-Icon-White.svg");
+}
+
+#betalend-icon {
+  background-image: url("../img/info icons/Payment-Icon-White.svg");
+}
+
+#close-button {
+  background-image: url("../img/info icons/Arrow-Down-Button-White.svg");
+  height: 25px;
+  width: 25px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: 5px auto 0px auto;
+  animation: bounce 2.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0)
+  }
+
+  40% {
+    transform: translateY(-15px)
+  }
+
+  60% {
+    transform: translateY(-7px)
+  }
+}
+
+/* Add --------------------------------------------------------------------------------*/
+#add {
+  height: auto;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  z-index: 9998;
+  background-color: #1E66FF;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: 0.8s;
+  color: white;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 0px;
+  font-weight: bold;
+  font-family: "Istok Web";
+}
+
+#add .praktische-gegevens {
+  margin: 7.5px 0;
+}
+
+#add-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.add-input {
+  background-color: #1E66FF;
+  border: none;
+  border-bottom: 2px solid lightgrey;
+  width: 100%;
+  font-family: inherit;
+  font-size: 1em;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.add-input::placeholder {
+  color: lightgrey;
+  font-weight: bold;
+}
+
+select {
+  background-color: #1E66FF;
+  border-radius: none;
+  color: white;
+  font-family: "Istok Web";
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.add-button {
+  font-family: "Istok Web";
+  color: #1E66FF;
+  background-color: white;
+  border: none;
+  font-size: 1em;
+  padding: 10px 30px;
+  border-radius: 20px;
+  margin: 15px auto 25px auto;
+}
+
+.add-sent {
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#toilet-roll {
+  width: 160px;
+  height: 160px;
+  margin: 35px auto;
+  background-image: url("../img/add icons/Roll-Icon-White.svg");
+}
+
+#add-confirm-message {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.add-sent .add-button {
+  margin: 25px auto;
+}
+
+/* Contact --------------------------------------------------------------------------------*/
+#contact {
+  height: auto;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  z-index: 9998;
+  background-color: #1E66FF;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: 0.8s;
+  color: white;
+  visibility: hidden;
+  opacity: 0;
+  margin-bottom: 0px;
+  font-weight: bold;
+  font-family: "Istok Web";
+}
+
+#contact-form {
+  width: 100%;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-button {
+  font-family: "Istok Web";
+  color: #1E66FF;
+  background-color: white;
+  border: none;
+  font-size: 1em;
+  padding: 10px 30px;
+  border-radius: 20px;
+  width: 80%;
+  margin: 15px auto 0px auto;
+}
+
+.contact-information {
+  width: 80%;
+  margin: 50px auto 0 auto;
+}
+
+.contact-information-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.contact-information-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+#telefoon-icon {
+  background-image: url("../img/nav icons/Phone-Button-White.svg");
+}
+
+#email-icon {
+  background-image: url("../img/contact icons/Mail-Icon-White.svg");
+}
+
+#website-icon {
+  background-image: url("../img/contact icons/Website-Icon-White.svg");
+}
+
+#contact-second-screen {
+  display: none;
+  width: 100%;
+}
+
+#contact-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#contact-form .add-button {
+  margin: 15px auto 25px auto;
+}
+
+#contact-second-screen-buttons {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+#contact-second-screen p {
+  margin-bottom: 15px;
+}
+
+#contact-second-screen textarea {
+  height: 150px;
+  color: white;
+  background-color: #1E66FF;
+  border: lightgrey solid 2px;
+  margin-bottom: 15px;
+  resize: none;
+}
+
+#contact-third-screen {
+  display: none;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#helpdesk-icon {
+  background-image: url("../img/contact icons/Helpdesk-Icon-White.svg");
+  width: 160px;
+  height: 160px;
+  margin: 35px auto;
+}
+
+#contact-confirm-message {
+  margin: 20px auto;
+}
+
+/* Navigation --------------------------------------------------------------------------------*/
+nav {
+  position: fixed;
+  bottom: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  background-color: white;
+}
+
+nav div {
+  height: 50px;
+  width: 33.33333333333333333333333%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  transition: 0.5s ease-in-out;
+}
+
+#nav-home {
+  background-image: url("../img/nav icons/Home-Button-White.svg");
+  background-color: #1E66FF;
+}
+
+#nav-add {
+  background-image: url("../img/nav icons/Add-Button-Blue.svg");
+}
+
+#nav-contact {
+  background-image: url("../img/nav icons/Phone-Button-Blue.svg");
+}

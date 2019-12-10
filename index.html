@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<title>Flush.o</title>
+	<link rel="icon" type="image/png" href="img/Flushologo.png">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="http://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Istok+Web:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<header>
+		<h1 id="header-title">Map</h1>
+	</header>
+	<div id="map"></div>
+
+	<div id="info">
+		<h2 id="omschrijving"></h2>
+		<div id="adresgegevens">
+			<div id="adres-wrap">
+				<div id="straat">
+					<p id="straatnaam"></p>
+					<p id="huisnummer"></p>
+				</div>
+				<div id="gemeente">
+					<div id="postcode"></div>
+					<div id="district"></div>
+				</div>
+			</div>
+			<div id="route-wrap">
+				<a id="route">Route naar</a>
+				<a id="route-icon"></a>
+			</div>
+
+		</div>
+		<div id="infolijn"></div>
+		<div id="praktische-gegevens">
+			<div class="praktische-gegevens" id="afstand">
+				<div class="icon-title-wrap">
+					<div class="praktische-gegevens-icon" id="afstand-icon"></div>
+					<div id="afstand-titel">Afstand</div>
+				</div>
+				<div class="praktische-gegevens-data" id="afstand-data"></div>
+			</div>
+			<div class="praktische-gegevens" id="geslacht">
+				<div class="icon-title-wrap">
+					<div class="praktische-gegevens-icon" id="geslacht-icon"></div>
+					<div id="geslacht-titel">Geslacht</div>
+				</div>
+				<div class="praktische-gegevens-data" id="geslacht-data"></div>
+			</div>
+			<div class="praktische-gegevens" id="luiertafel">
+				<div class="icon-title-wrap">
+					<div class="praktische-gegevens-icon" id="luiertafel-icon"></div>
+					<div id="luiertafel-titel">Luiertafel aanwezig</div>
+				</div>
+				<div class="praktische-gegevens-data" id="luiertafel-data"></div>
+			</div>
+			<div class="praktische-gegevens" id="betalend">
+				<div class="icon-title-wrap">
+					<div class="praktische-gegevens-icon" id="betalend-icon"></div>
+					<div id="betalend-titel">Betalend</div>
+				</div>
+				<div class="praktische-gegevens-data" id="betalend-data"></div>
+			</div>
+		</div>
+		<div onclick="closeInfo()" id="close-button"></div>
+	</div>
+
+	<div id="add">
+		<form id="add-form">
+			<input class="add-input" id="form-straatnaam" type="text" placeholder="Straatnaam">
+			<input class="add-input" id="form-huisnummer" type="text" placeholder="Huisnummer">
+			<input class="add-input" id="form-postcode" type="text" placeholder="Postcode">
+			<input class="add-input" id="form-gemeente" type="text" placeholder="Gemeente">
+
+			<div class="praktische-gegevens" id="geslacht">
+				<div class="icon-title-wrap">
+					<div class="praktische-gegevens-icon" id="geslacht-icon"></div>
+					<div id="geslacht-titel">Geslacht</div>
+				</div>
+				<select class="geslacht-dropdown">
+					<option value="Mannen">Mannen</option>
+					<option value="Vrouwen">Vrouwen</option>
+					<option value="Mannen/Vrouwen">Mannen/Vrouwen</option>
+				</select>
+			</div>
+
+			<div class="praktische-gegevens" id="luiertafel">
+				<div class="icon-title-wrap">
+					<div class="praktische-gegevens-icon" id="luiertafel-icon"></div>
+					<div id="luiertafel-titel">Luiertafel aanwezig</div>
+				</div>
+				<select class="luiertafel-dropdown">
+					<option value="Ja">Ja</option>
+					<option value="Neen">Neen</option>
+				</select>
+			</div>
+
+			<div class="praktische-gegevens" id="betalend">
+				<div class="icon-title-wrap">
+					<div class="praktische-gegevens-icon" id="betalend-icon"></div>
+					<div id="betalend-titel">Betalend</div>
+				</div>
+				<select class="betalend-dropdown">
+					<option value="Ja">Ja</option>
+					<option value="Neen">Neen</option>
+				</select>
+			</div>
+
+			<button type="button" onclick="addSend()" class="add-button">Versturen</button>
+		</form>
+
+		<!-- Sent screen -->
+		<div class="add-sent">
+			<div id="toilet-roll"></div>
+			<p id="add-confirm-message">Bedankt, uw verzoek is verzonden.</p>
+			<button onclick="backToForm();resetForm()" class="add-button">Ga terug</button>
+		</div>
+	</div>
+
+	<div id="contact">
+		<div id="contact-first-screen">
+			<div class="contact-buttons">
+				<button onclick="contactProblem()" class="contact-button">Problemen met een openbaar toilet</button>
+				<button onclick="contactProblem()" class="contact-button">Problemen met de applicatie</button>
+				<button onclick="contactProblem()" class="contact-button">Andere problemen</button>
+			</div>
+			<div class="contact-information">
+				<div class="contact-information-row">
+					<div id="telefoon-icon" class="contact-information-icon"></div>
+					<div class="contact-information-data">03 665 98 52</div>
+				</div>
+				<div class="contact-information-row">
+					<div id="email-icon" class="contact-information-icon"></div>
+					<div class="contact-information-data">support@flusho.com</div>
+				</div>
+				<div class="contact-information-row">
+					<div id="website-icon" class="contact-information-icon"></div>
+					<div class="contact-information-data">www.flusho.com</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="contact-second-screen">
+			<form id="contact-form">
+				<p>Beschrijf het probleem</p>
+				<textarea name="comment"></textarea>
+				<input class="add-input" id="form-telefoonnummer" type="text" placeholder="Telefoon">
+				<input class="add-input" id="form-email" type="text" placeholder="Email">
+				<div id="contact-second-screen-buttons">
+					<button onclick="backToContactForm()" class="add-button" type="button">Ga terug</button>
+					<button onclick="sendProblem()" class="add-button" type="button">Versturen</button>
+				</div>
+			</form>
+		</div>
+
+		<div id="contact-third-screen">
+			<div id="helpdesk-icon"></div>
+			<p id="contact-confirm-message">Bedankt, uw verzoek is verzonden.</p>
+			<button onclick="backToContactForm()" class="add-button">Ga terug</button>
+		</div>
+
+	</div>
+
+	<nav>
+		<div onclick="openHome();resetForm()" id="nav-home"></div>
+		<div onclick="openAdd();resetForm()" id="nav-add"></div>
+		<div onclick="openContact();resetForm()" id="nav-contact"></div>
+	</nav>
+
+	<script src="http://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="leaflet-providers.js"></script>
+	<script src="data/openbaar_toilet.geojson" type="text/javascript"></script>
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>
